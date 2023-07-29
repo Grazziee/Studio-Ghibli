@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale = 1, maximum-scale=.86, minimum-scale=0.86">
+    <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="icon" type="image/x-icon"
+        href="https://raw.githubusercontent.com/Grazziee/Portfolio/main/logos/GA_logo_04.png">
+    <title>Studio Ghibli</title>
+
+    <style>
+        .element {
+            border-right: none;
+        }
+
+        body {
+            width: 100%;
+            background-image: url(https://i.pinimg.com/originals/94/c5/6d/94c56dfb3c26981727b307430540c737.jpg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            border: 0;
+            margin: 0;
+        }
+
+        * {
+            padding: 0%;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        p {
+            color: rgb(241, 255, 239);
+            font-size: 17px;
+            margin-top: 1px;
+            line-height: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.05rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .section_title {
+            font-size: 60px;
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+            color: rgb(255, 255, 255);
+            margin-top: 1%;
+            margin: auto;
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            text-align: center;
+        }
+
+        .section_title span {
+            color: rgb(79, 170, 255);
+        }
+
+        .brand h1 {
+            font-size: 30px;
+            color: white;
+        }
+
+        .brand h1 span {
+            color: rgb(65, 179, 255);
+        }
+
+        /* Header section */
+        #header {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: auto;
+        }
+
+        #header .header {
+            min-height: 8vh;
+            background-color: rgba(8, 8, 8, 0.75);
+            transition: 0.3s ease background-color;
+        }
+
+        #header .nav_bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 100%;
+            max-width: 1300px;
+            padding: 0 10px;
+        }
+
+        #header .nav_list ul {
+            list-style: none;
+            position: absolute;
+            background-color: rgb(31, 41, 65);
+            width: 100vw;
+            height: 100vh;
+            left: 100%;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            overflow-x: hidden;
+            transition: 0.5s ease left;
+        }
+
+        #header .nav_list ul.active {
+            left: 0%;
+        }
+
+        #header .nav_list ul a {
+            font-size: 30px;
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.2rem;
+            text-decoration: none;
+            color: white;
+            text-transform: uppercase;
+            padding: 20px;
+            display: block;
+        }
+
+        #header .nav_list ul a::after {
+            content: attr(data-after);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            color: rgba(255, 255, 255, 0.021);
+            font-size: 90px;
+            letter-spacing: 50px;
+            z-index: -1;
+            transition: 0.3s ease letter-spacing;
+        }
+
+        #header .nav_list ul li:hover a::after {
+            transform: translate(-50%, -50%) scale(1);
+            letter-spacing: initial;
+        }
+
+        #header .nav_list ul li:hover a {
+            color: rgb(56, 191, 245);
+        }
+
+        #header .hamburger {
+            height: 60px;
+            width: 60px;
+            display: inline-block;
+            border: 3px solid white;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            cursor: pointer;
+            transform: scale(0.8);
+        }
+
+        #header .hamburger::after {
+            position: absolute;
+            content: '';
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            border: 3px solid white;
+            animation: hamburger_puls 1s ease infinite;
+        }
+
+        #header .hamburger .bar {
+            height: 2px;
+            width: 30px;
+            position: relative;
+            background-color: white;
+            z-index: -1;
+        }
+
+        #header .hamburger .bar::after,
+        #header .hamburger .bar::before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            background-color: white;
+            transition: 0.3s ease;
+            transition-property: top, bottom;
+        }
+
+        #header .hamburger .bar::after {
+            top: 8px;
+        }
+
+        #header .hamburger .bar::before {
+            bottom: 8px;
+        }
+
+        #header .hamburger.active .bar::before {
+            bottom: 0;
+        }
+
+        #header .hamburger.active .bar::after {
+            top: 0;
+        }
+
+        /* End of Header section */
+
+        /*Hero Section */
+        #hero {
+            background-image: url(https://wallpaper.dog/large/20576205.jpg);
+            background-size: cover;
+            background-position: top center;
+            position: relative;
+            z-index: 1;
+        }
+
+        #hero::after {
+            content: '';
+            position: absolute;
+            left: 0%;
+            top: 0%;
+            height: 100%;
+            width: 100%;
+            background-color: rgb(16, 29, 78);
+            opacity: 0.55;
+            z-index: -1;
+        }
+
+        #hero .container {
+            padding: 0px 0px;
+        }
+
+        #hero .hero {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 50px;
+            justify-content: flex-start;
+        }
+
+        #hero h1 {
+            display: block;
+            width: fit-content;
+            font-size: 15px;
+            position: relative;
+            color: rgb(255, 255, 255);
+            font-family: Georgia, serif;
+        }
+
+        #hero h2 {
+            display: block;
+            width: fit-content;
+            font-size: 70px;
+            position: relative;
+            color: rgb(255, 255, 255);
+            font-family: Georgia, serif;
+        }
+
+        #hero h2:hover {
+            color: #fff1c9;
+            transition: 0.5s;
+        }
+
+        #hero .filmbutton {
+            display: inline-block;
+            padding: 10px 10px;
+            color: rgb(255, 255, 255);
+            background-color: transparent;
+            border: 2.5px solid rgb(255, 255, 255);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: .1rem;
+            margin-top: 10px;
+            transition: .3s ease;
+            transition-property: background-color, color;
+        }
+
+        #hero .filmbutton:hover {
+            color: rgb(29, 128, 221);
+            background-color: rgb(255, 255, 255);
+        }
+
+        /*End of Hero Section */
+
+        /* Films Section */
+        #films .films {
+            flex-direction: column;
+            max-width: 1200px;
+            margin: 0% auto;
+            padding: 50px 0;
+        }
+
+        #films .films_header iframe {
+            flex-direction: column;
+            display: flex;
+            width: 390px;
+            height: 270px;
+            margin: auto;
+            margin-top: 0%;
+            margin-bottom: 15%;
+            transition: transform .5s;
+        }
+
+        #films .video_container:hover {
+            transform: scale(1.1);
+        }
+
+        #films .films_header h1 {
+            margin-bottom: 50px;
+        }
+
+        #films .all_films {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        #films .film_produced {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 80%;
+            margin: 10px auto;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        #films .film_info {
+            padding: 30px;
+            flex-basis: 50%;
+            height: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+            background-image: linear-gradient(60deg, #4183ca, #1c4877);
+            color: rgb(255, 225, 185)
+        }
+
+        #films .film_info h1 {
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        #films .film_info h2 {
+            font-size: 30px;
+            font-weight: 500;
+            margin-top: 8px;
+            margin-bottom: 5px;
+        }
+
+        #films .film_info p {
+            color: rgb(255, 255, 255);
+        }
+
+        #films .film_img {
+            flex-basis: 50%;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #films .film_img:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-image: linear-gradient(60deg, #29323c, #485563);
+            opacity: 0.4;
+        }
+
+        #films .film_img img {
+            transition: 0.3s ease transform;
+        }
+
+        #films .film_produced:hover .film_img img {
+            transform: scale(1.1);
+        }
+
+        /* End of Films Section */
+
+        /* Stores Section */
+        #stores .store {
+            flex-direction: column;
+            text-align: center;
+            max-width: 1500px;
+            margin: auto;
+            padding: 100px 0;
+        }
+
+        #stores .store1 p {
+            margin-top: 2%;
+        }
+
+        #stores .store2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        #stores .store_location {
+            flex-basis: 80%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+            padding: 10px;
+            border-radius: 15px;
+            background-image: url(https://www.kanpai-japan.com/sites/default/files/styles/big_header_lg/public/uploads/2022/06/donguri-ghibli-store-japan-1.jpg);
+            background-size: cover;
+            margin: 10px 5%;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        #stores .store_location::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-image: linear-gradient(60deg, #1a2d44, #39618b);
+            opacity: 0.75;
+            z-index: -1;
+        }
+
+        #stores .store2 .loc_icon {
+            height: 48px;
+            width: 48px;
+            margin: auto;
+        }
+
+        #stores .store_location h2 {
+            font-size: 40px;
+            color: rgb(255, 225, 185);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        #stores .store_location p {
+            font-size: 15px;
+            color: white;
+            text-align: left;
+        }
+
+        /* End of Stores Section */
+
+        /* About Section */
+        #about .about {
+            flex-direction: column-reverse;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0% auto;
+            padding: 100px 20px;
+        }
+
+        #about .col_left {
+            width: 250px;
+            height: 360px;
+        }
+
+        #about .col_right {
+            width: 100%;
+        }
+
+        #about .col_right h2 {
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: .2rem;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: #7bc4ff;
+        }
+
+        #about .col_right p {
+            margin-bottom: 30px;
+        }
+
+        #about .col_left .abt_img {
+            height: 110%;
+            width: 100%;
+            position: relative;
+            border: 10px solid rgb(235, 220, 201);
+        }
+
+        #about .col_left .abt_img::after {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 20px;
+            height: 98%;
+            width: 98%;
+            border: 7px solid rgb(29, 128, 221);
+            z-index: -1;
+        }
+
+        /* End of About Section */
+
+        /* Contact Section */
+        #contact .contact {
+            flex-direction: column;
+            max-width: 1200px;
+            margin: 0% auto;
+            padding: 100px 0px;
+        }
+
+        #contact .contact_items {
+            width: 100%;
+        }
+
+        #contact .contact_item {
+            width: 70%;
+            padding: 20px;
+            margin-bottom: 10%;
+            text-align: center;
+            border-radius: 30px;
+            padding: 30px;
+            margin: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            box-shadow: 0px 0px 18px rgb(51, 50, 49);
+            background-color: #ffece1;
+            transition: .3s ease box-shadow;
+        }
+
+        #contact .contact_item:hover {
+            box-shadow: 0px 0px 5px black;
+        }
+
+        #contact .contact_icon {
+            margin: 0 auto;
+            width: 70px;
+            margin-bottom: 10px;
+        }
+
+        #contact .contact_info h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 25px;
+            font-weight: bold;
+            margin: 5px;
+            color: #00356d;
+            text-transform: uppercase;
+        }
+
+        #contact .contact_info h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.2;
+            margin: 5px;
+        }
+
+        /* End of Contact Section */
+
+        /* Footer Section */
+
+        #footer .footer {
+            min-height: 200px;
+            flex-direction: column;
+            padding-top: 10px;
+            padding-bottom: 20px;
+        }
+
+        #footer h1 {
+            color: white;
+            font-weight: bold;
+            font-size: 45px;
+            letter-spacing: 0.1rem;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-family: Georgia, serif;
+            text-align: center;
+        }
+
+        #footer h2 {
+            color: white;
+            font-weight: 500;
+            font-size: 18px;
+            letter-spacing: 0.1rem;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+        }
+
+        #footer .socmed_icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        #footer .socmed_item {
+            height: 50px;
+            width: 50px;
+            margin: 0 10px;
+        }
+
+        #footer .socmed_item img {
+            filter: grayscale(1);
+            transition: 0.3s ease filter;
+        }
+
+        #footer .socmed_item:hover img {
+            filter: grayscale(0);
+        }
+
+        #footer p {
+            color: rgb(255, 255, 255);
+            font-size: 10px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* End of Footer Section */
+
+        @keyframes hamburger_puls {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(1.4);
+            }
+        }
+
+        /* Media Query For Desktop */
+        @media only screen and (min-width: 1200px) {
+            .element {
+                border-right: none;
+            }
+
+            /* Header Section */
+            #header .hamburger {
+                display: none;
+            }
+
+            #header .nav_list ul {
+                position: initial;
+                display: block;
+                height: auto;
+                width: fit-content;
+                background-color: transparent;
+            }
+
+            #header .nav_list ul li {
+                display: inline-block;
+                margin-right: 10px;
+            }
+
+            #header .nav_list ul li a {
+                font-size: 20px;
+            }
+
+            #header .nav_list ul a:after {
+                display: none;
+            }
+
+            /* End of Header Section */
+
+            /* Films Section */
+            #films .film_produced {
+                flex-direction: row;
+            }
+
+            #films .film_produced:nth-child(even) {
+                flex-direction: row-reverse;
+            }
+
+            #films .film_produced {
+                height: 300px;
+                margin: 2%;
+                width: 90%;
+                border-radius: 10;
+            }
+
+            #films .all_films .film_info {
+                height: 100%;
+            }
+
+            #films .all_films .film_img {
+                height: 100%;
+            }
+
+            /* End of Films Section */
+        }
+        /* End of Media Query For Desktop */
+
+        /* Media Query For Tablet */
+        @media only screen and (min-width: 768px) {
+            .element {
+                border-right: none;
+            }
+
+            h1.section_title {
+                font-size: 50px;
+            }
+
+            /* Hero Section*/
+            #hero h1 {
+                font-size: 25px;
+            }
+
+            #hero h2 {
+                font-size: 70px;
+            }
+
+            #hero .filmbutton {
+                padding: 10px 20px;
+                font-size: 15px;
+            }
+
+            /* End of Hero Section*/
+
+            /* Stores Section */
+            #stores .store2 .store_location {
+                flex-basis: 45%;
+                margin: 2.5%;
+            }
+
+            #stores .store_location h2 {
+                font-size: 50px;
+            }
+
+            #stores .store_location p {
+                font-size: 20px;
+                color: white;
+                text-align: left;
+            }
+
+            /* End of Stores Section */
+
+            /* About Section */
+            #about .about {
+                flex-direction: row;
+            }
+
+            #about .col_left {
+                width: 600px;
+                height: 400px;
+                padding-left: 60px;
+            }
+
+            #about .about .col_left .abt_img::after {
+                left: -45px;
+                top: 34px;
+                height: 98%;
+                width: 98%;
+                border: 10px solid rgb(29, 128, 221);
+            }
+
+            #about .col_right {
+                text-align: left;
+                padding: 30px;
+            }
+
+            #about .col_right h1 {
+                text-align: left;
+            }
+
+            /* End of About Section*/
+
+            /*Contact Section*/
+            #contact .contact_info h2 {
+                font-size: 20px;
+            }
+
+            /* End of Contact Section*/
+
+            /*Footer Section*/
+            #footer p {
+                font-size: 15px;
+            }
+            /* End of Footer Section*/
+        }
+        /* End of Media Query For Tablet */
+
+        @import url('https://fonts.cdnfonts.com/css/montserrat');
+    </style>
+
+</head>
+
+<body>
+    <!-- Header -->
+    <section id="header">
+        <div class="header container">
+            <div class="nav_bar">
+                <div class="brand">
+                    <a href="#hero">
+                        <h1>Studio <span>Ghibli</span></h1>
+                    </a>
+                </div>
+                <div class="nav_list">
+                    <div class="hamburger">
+                        <div class="bar"></div>
+                    </div>
+                    <ul>
+                        <li><a href="#hero" data-after="Home">Home</a></li>
+                        <li><a href="#films" data-after="Films">Films</a></li>
+                        <li><a href="#stores" data-after="Stores">Stores</a></li>
+                        <li><a href="#about" data-after="About">About</a></li>
+                        <li><a href="#contact" data-after="Contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Header -->
+
+    <!-- Hero Section  -->
+    <section id="hero">
+        <div class="hero container">
+            <div>
+                <h1>株式会社スタジオジブリ</h1>
+                <h2>Studio Ghibli</h2>
+                <a href="#films" type="button" class="filmbutton">Filmography</a>
+            </div>
+        </div>
+    </section>
+    <!-- End of Hero Section  -->
+
+    <!-- Films Section -->
+    <section id="films">
+        <div class="films container">
+            <div class="films_header">
+                <h1 class="section_title">Now <span>Playing</span></h1>
+                <iframe width="512px" height="316px"
+                    src="https://www.youtube.com/embed/J6qIzKxmW8Y?start=4&autoplay=1&loop=1"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+                <h1 class="section_title">All <span>Ghibli </span>Films</h1>
+            </div>
+            <div class="all_films">
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img src="https://goggler.my/wp-content/uploads/2020/03/NausicaäNameAMoreIconicPair.png">
+                    </div>
+                    <div class="film_info">
+                        <h1>Nausicaä of the Valley of the Wind</h1>
+                        <h2>1984</h2>
+                        <p>Young Nausicaä lives in the arid Valley of the Wind and can communicate with the massive
+                            insects that populate the dangerous jungle.
+                            Under the guidance of the pensive veteran warrior, Lord Yupa, Nausicaä works to bring peace
+                            back to the ravaged planet.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img src="https://ghibli-shop.com/wp-content/uploads/2021/01/unnamed-file-55-1024x557.jpg">
+                    </div>
+                    <div class="film_info">
+                        <h1>Castle in the Sky</h1>
+                        <h2>1986</h2>
+                        <p>Escaping from a mid-air collision via a magic crystal around her neck,
+                            Sheeta meets fellow orphan Pazu and the pair join forces to discover the mystical floating
+                            city of Laputa while pursued by both Muska and the pirates,
+                            who lust for the city's myriad treasures.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img
+                            src="https://theoddapple.com/wp-content/uploads/2020/06/grave-of-the-fireflies-1988-ending-explained.jpg">
+                    </div>
+                    <div class="film_info">
+                        <h1>Grave of the Fireflies</h1>
+                        <h2>1988</h2>
+                        <p>This follows Seita, a teenager charged with the care of his younger sister, Setsuko, after an
+                            American firebombing during World War II separates the two children from their parents.
+                            Their tale of survival is as heartbreaking as it is true to life.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img
+                            src="https://static1.cbrimages.com/wordpress/wp-content/uploads/2021/08/My-Neighbor-Totoro-Poster.jpg">
+                    </div>
+                    <div class="film_info">
+                        <h1>My Neighbor Totoro</h1>
+                        <h2>1988</h2>
+                        <p>Satsuke and her younger sister, Mei, settle into an old country house with their father and
+                            wait for their mother to recover from an illness in an area hospital.
+                            As the sisters explore their new home, they encounter and befriend playful spirits in their
+                            house and the nearby forest,
+                            most notably the massive cuddly creature known as Totoro.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img
+                            src="https://dw9to29mmj727.cloudfront.net/promo/2016/5541-Ghibli_SeriesHeaders_Kiki_2000x800.jpg">
+                    </div>
+                    <div class="film_info">
+                        <h1>Kiki’s Delivery Service</h1>
+                        <h2>1989</h2>
+                        <p>In this young adult novel, 13-year-old Kiki moves to a seaside town with her talking cat,
+                            Jiji. After learning to control her broomstick, Kiki sets up a flying courier service.
+                            But when the insecure young witch begins questioning herself, she loses her magic abilities.
+                        </p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img src="https://www.slantmagazine.com/wp-content/uploads/2015/12/onlyyesterday.jpg">
+                    </div>
+                    <div class="film_info">
+                        <h1>Only Yesterday</h1>
+                        <h2>1991</h2>
+                        <p>As Taeko's vacation progresses, she has extended flashbacks about the frustrations and small
+                            pleasures of her childhood,
+                            and wonders if her stress-filled adult life is what the young Taeko would have wanted for
+                            herself.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img
+                            src="https://cdn1.i-scmp.com/sites/default/files/images/methode/2016/08/04/f76c586a-546a-11e6-98ca-49b1c9e3ed10_image_hires.JPG">
+                    </div>
+                    <div class="film_info">
+                        <h1>Porco Rosso</h1>
+                        <h2>1992</h2>
+                        <p>Porco Rosso is about a former World War I flying ace who was somehow turned into a pig during
+                            the war.
+                            In the 1930s, sky pirates in biplanes terrorize wealthy cruise ships as they sail the
+                            Adriatic Sea.
+                            The only pilot brave enough to stop the scourge is an Italian ex-fighter ace named Porco
+                            Rosso.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img
+                            src="https://m.media-amazon.com/images/M/MV5BMTQ5MzNiMTMtMTg2MC00ZWY2LWE4MTAtYzRkOGI3MTgxZjU0XkEyXkFqcGdeQXVyOTc5MDI5NjE@._V1_.jpg">
+                    </div>
+                    <div class="film_info">
+                        <h1>Ocean Waves</h1>
+                        <h2>1993</h2>
+                        <p>As he journeys back from Tokyo to his high school for a reunion, Taku Morisaki recounts his
+                            memories of his school days,
+                            focussing in particular on a love triangle that developed between him and two of his
+                            friends.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img src="https://cdn.eventfinda.co.nz/uploads/events/transformed/1689246-733388-35.png">
+                    </div>
+                    <div class="film_info">
+                        <h1>Pom Poko</h1>
+                        <h2>1994</h2>
+                        <p>A community of magical shape-shifting raccoon dogs struggle to prevent their forest home from
+                            being destroyed by urban development.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img
+                            src="https://m.media-amazon.com/images/M/MV5BNDU4ZjgzYjgtOTcxYi00ZDMyLTkxZjEtM2I2NDZjNDJmZDg0XkEyXkFqcGdeQXVyMTI3MDk3MzQ@._V1_.jpg">
+                    </div>
+                    <div class="film_info">
+                        <h1>Whisper of the Heart</h1>
+                        <h2>1995</h2>
+                        <p>One day, Shizuku notices that all of her library books have previously been taken out by one
+                            Seiji Amasawa.
+                            Amid chasing after a large cat, befriending an eccentric antiques dealer and writing her
+                            first novel, Shizuku aims to find this mysterious boy who may well be her soul mate.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img
+                            src="https://dotandline.net/wp-content/uploads/2017/07/1_qfVRWyA2Z8X4zjM1FsRnQg-1210x642.jpeg">
+                    </div>
+                    <div class="film_info">
+                        <h1>Princess Mononoke</h1>
+                        <h2>1997</h2>
+                        <p>Ashitaka, infected by an animal attack, seeks a cure from the deer-like god Shishigami.
+                            In his travels, he sees humans ravaging the earth, bringing down the wrath of wolf god Moro
+                            and his human companion Princess Mononoke.
+                            His attempts to break peace between her and the humans brings only conflict.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img
+                            src="https://images.amcnetworks.com/ifccenter.com/wp-content/uploads/2019/12/my_neighbors_08_02_05_05.jpg">
+                    </div>
+                    <div class="film_info">
+                        <h1>My Neighbors the Yamadas</h1>
+                        <h2>1999</h2>
+                        <p>The Yamadas are a normal Japanese family.
+                            Father Takashi and his wife Matsuke argue over a TV remote control,
+                            Grandma Shige always brightens the day with her proverbs and daughter Nanoko likes to get
+                            lost in a shopping centre.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img
+                            src="https://www.leftlion.co.uk/media/4926467/spiritedaway2.jpg?anchor=center&mode=crop&width=1200&height=628&rnd=132772155630000000">
+                    </div>
+                    <div class="film_info">
+                        <h1>Spirited Away</h1>
+                        <h2>2001</h2>
+                        <p> After her mother and father are turned into giant pigs, Chihiro meets the mysterious Haku,
+                            who explains that the park is a resort for supernatural beings who need a break from their
+                            time spent in the earthly realm,
+                            and that she must work there to free herself and her parents.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img src="https://cdn.mos.cms.futurecdn.net/d52d01e4bbc90ec38c6edfd95f881010-1200-80.jpg">
+                    </div>
+                    <div class="film_info">
+                        <h1>The Cat Returns</h1>
+                        <h2>2002</h2>
+                        <p>Haru rescues a cat that was about to be run over by a truck and discovers the cat is actually
+                            a prince named Lune.
+                            Haru is brought to the Cat Kingdom, where she starts to develop feline features.
+                            When she is prevented from leaving, two statues that have magically been given life, provide
+                            assistance in gaining her freedom.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img
+                            src="https://i0.wp.com/oehowl.org/wp-content/uploads/2021/04/howl.jpg?fit=1920%2C1038&ssl=1">
+                    </div>
+                    <div class="film_info">
+                        <h1>Howl's Moving Castle</h1>
+                        <h2>2004</h2>
+                        <p>Sophie befriends the wizard Howl, who lives in a magical flying castle.
+                            However, the evil Witch of Waste casts a spell on young Sophie, which ages her prematurely.
+                            Now Howl must use all his magical talents to battle the jealous hag and return Sophie to her
+                            former youth and beauty.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img
+                            src="https://photogenie.be/wp-content/uploads/2022/10/tales-from-earthsea-1.png-1200x652.webp">
+                    </div>
+                    <div class="film_info">
+                        <h1>Tales from Earthsea</h1>
+                        <h2>2006</h2>
+                        <p>A powerful wizard named Sparrowhawk seeks the source of his world's imbalance, and along the
+                            way rescues a runaway prince named Arren.
+                            When Sparrowhawk's powers begin to weaken, he and Arren must join forces with a former
+                            priestess and her daughter to defeat an evil foe whose quest for immortality will destroy
+                            Earthsea.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img src="https://miro.medium.com/max/1400/1*9UYnklwYxaX6nQyGY_ZLjg.png">
+                    </div>
+                    <div class="film_info">
+                        <h1>Ponyo</h1>
+                        <h2>2008</h2>
+                        <p>A goldfish princess encounters a human boy named Sosuke, who gives her the name Ponyo.
+                            Ponyo longs to become human, and as her friendship with Sosuke grows, she becomes more
+                            human-like.
+                            Her father brings her back to their ocean kingdom, but so strong is her wish to live on the
+                            surface that she breaks free.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img
+                            src="http://1.bp.blogspot.com/-rdOO4CFPnaY/T0A5F7MBhTI/AAAAAAAABpY/XfwRx1eaoEo/s1600/2012_the_secret_world_of_arrietty_003.jpg">
+                    </div>
+                    <div class="film_info">
+                        <h1>The Secret World of Arrietty</h1>
+                        <h2>2010</h2>
+                        <p>The Clock family are four-inch-tall people who live anonymously in another family's
+                            residence, borrowing simple items to make their home.
+                            Life changes for the Clocks when their teenage daughter, Arrietty, is discovered.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img
+                            src="https://static01.nyt.com/images/2013/03/10/arts/10POPPY1_SPAN/10POPPY1-superJumbo.jpg">
+                    </div>
+                    <div class="film_info">
+                        <h1>From Up on Poppy Hill </h1>
+                        <h2>2011</h2>
+                        <p>A group of Yokohama teens look to save their school's clubhouse from the wrecking ball in
+                            preparations for the 1964 Tokyo Olympics.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img
+                            src="https://www.animenewsnetwork.com/thumbnails/crop1200x630gIR/cms/news/69518/the_wind_rises_keyartsm.jpg">
+                    </div>
+                    <div class="film_info">
+                        <h1>The Wind Rises</h1>
+                        <h2>2013</h2>
+                        <p>A lifelong love of flight inspires Japanese aviation engineer Jiro Horikoshi,
+                            whose storied career includes the creation of the A6M World War II fighter plane.</p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img
+                            src="https://www2.bfi.org.uk/sites/bfi.org.uk/files/styles/full/public/image/tale-of-the-princess-kaguya-2013-015-kaguya-catching-cherry-blossom.jpg?itok=Pe-zjIoM">
+                    </div>
+                    <div class="film_info">
+                        <h1>The Tale of The Princess Kaguya</h1>
+                        <h2>2013</h2>
+                        <p>A tiny nymph found inside a bamboo stalk grows into a beautiful and desirable young woman,
+                            who orders her suitors to prove their love by completing a series of near-impossible tasks.
+                        </p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img
+                            src="https://www.awn.com/sites/default/files/styles/original/public/image/attached/1024485-marnie-26.jpg?itok=olUTRouV">
+                    </div>
+                    <div class="film_info">
+                        <h1>When Marnie Was There</h1>
+                        <h2>2014</h2>
+                        <p>A young girl is sent to the country for health reasons, where she meets an unlikely friend in
+                            the form of Marnie, a young girl with flowing blonde hair.
+                            As the friendship unravels Marnie has closer ties to the protagonist than we might expect.
+                        </p>
+                    </div>
+                </div>
+                <div class="film_produced">
+                    <div class="film_img">
+                        <img
+                            src="https://static01.nyt.com/images/2021/02/05/arts/earwig1/merlin_182979771_66420363-fa03-4b2e-a3c0-6672605dd9ae-superJumbo.jpg">
+                    </div>
+                    <div class="film_info">
+                        <h1>Earwig and the Witch </h1>
+                        <h2>2020</h2>
+                        <p>A headstrong orphan discovers a world of spells and potions while living with a selfish
+                            witch.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End of Films Section -->
+
+    <!-- Stores Section -->
+    <section id="stores">
+        <div class="store container">
+            <div class="store1">
+                <h1 class="section_title"><span>Official</span> Stores</h1>
+                <p>Donguri is the Japanese name of Studio Ghibli’s official stores mainly located in Japan.
+                    Aside the "Mamma Aiuto" shop in Ghibli Museum, the animation studio partnered with Benelic Group to
+                    create a store chain quasi-exclusively dedicated to the brand’s by-products.</p>
+            </div>
+            <div class="store2">
+                <div class="store_location">
+                    <div>
+                        <img class="loc_icon" src="https://www.iconpacks.net/icons/2/free-location-icon-2955-thumb.png">
+                    </div>
+                    <h2>Hokkaido</h2>
+                    <p>Sapporo: Paceo (B1F)</p>
+                </div>
+                <div class="store_location">
+                    <div>
+                        <img class="loc_icon" src="https://www.iconpacks.net/icons/2/free-location-icon-2955-thumb.png">
+                    </div>
+                    <h2>Tohoku</h2>
+                    <p>Sendai: Ichibancho (1F)</p>
+                </div>
+                <div class="store_location">
+                    <div>
+                        <img class="loc_icon" src="https://www.iconpacks.net/icons/2/free-location-icon-2955-thumb.png">
+                    </div>
+                    <h2>Kanto</h2>
+                    <p> • Tokyo SkyTree: Tokyo Solamachi (2F)<br>
+                        • Odaiba: Venus Fort (Venus GRAND 2F)<br>
+                        • Mitaka: Mamma Aiuto shop at Ghibli Museum</p>
+                </div>
+                <div class="store_location">
+                    <div>
+                        <img class="loc_icon" src="https://www.iconpacks.net/icons/2/free-location-icon-2955-thumb.png">
+                    </div>
+                    <h2>Chubu</h2>
+                    <p> • Futakata: Mozo Wondercity (3F)<br>
+                        • JR Takashimaya Gate Tower Mall (1F)<br>
+                        • Niigata: LoveLa Bandai (3F)
+                    </p>
+                </div>
+                <div class="store_location">
+                    <div>
+                        <img class="loc_icon" src="https://www.iconpacks.net/icons/2/free-location-icon-2955-thumb.png">
+                    </div>
+                    <h2>Kansai</h2>
+                    <p> • Namba Walk 5-4 - Sennichimae 1<br>
+                        • Umeda Hankyu: Kiddy-land Sanbangai (B1F)<br>
+                        • Higashi-Kawasaki: Mozaic (2F)</p>
+                </div>
+                <div class="store_location">
+                    <div>
+                        <img class="loc_icon" src="https://www.iconpacks.net/icons/2/free-location-icon-2955-thumb.png">
+                    </div>
+                    <h2>Shikoku</h2>
+                    <p> • Kochi: Avenue (2F)<br>
+                        • Matsuyama: Dogoyu no Machi<br>
+                        • Takamatsu: Kawaramachi Zoo)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End of Stores Section -->
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about container">
+            <div class="col_left">
+                <div class="abt_img">
+                    <img src="https://mymodernmet.com/wp/wp-content/uploads/2020/06/hayao-miyazaki-facts-5.jpg">
+                </div>
+            </div>
+            <div class="col_right">
+                <h1 class="section_title">ABOUT THE <span>CREATORS</span></h1>
+                <h2>Studio Ghibli Inc.</h2>
+                <p>Studio Ghibli was founded in 1985 by animated film directors Toshio Suzuki, Isao Takahata and Hayao
+                    Miyazaki, and has produced twenty-two feature-length films.
+                    Most Studio Ghibli films ranked number one at the box office in Japan in the year in which they were
+                    released.
+                    Studio Ghibli films have garnered numerous awards and critical acclaim from film critics and
+                    animation specialists around the world. </p>
+            </div>
+        </div>
+    </section>
+    <!-- End of About Section -->
+
+    <!-- Contact Section  -->
+    <section id="contact">
+        <div class="contact container">
+            <div>
+                <h1 class="section_title"><span>CONTACT</span> INFO</h1>
+            </div>
+            <div class="contact_items"></div>
+            <div class="contact_item">
+                <div class="contact_icon"><img src="https://cdn-icons-png.flaticon.com/512/4812/4812397.png"></div>
+                <div class="contact_info">
+                    <h1>E-mail</h1>
+                    <h2>info@thestudioghibli.com</h2>
+                    <h2>thestudioghibli@gmail.com</h2>
+                </div>
+            </div>
+            <div class="contact_item">
+                <div class="contact_icon"><img src="https://cdn-icons-png.flaticon.com/512/145/145807.png"></div>
+                <div class="contact_info">
+                    <h1>LinkedIn</h1>
+                    <h2>Studio Ghibli Inc.</h2>
+                </div>
+            </div>
+            <div class="contact_item">
+                <div class="contact_icon"><img src="https://cdn-icons-png.flaticon.com/512/67/67347.png"></div>
+                <div class="contact_info">
+                    <h1>Location</h1>
+                    <h2>Koganei, Tokyo</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End of Contact Section  -->
+
+    <!-- Footer Section -->
+    <section id="footer">
+        <div class="footer container">
+            <div class="brand">
+                <h1>Studio <span>Ghibli</span></h1>
+                <h2>Where Imagination Begins.</h2>
+                <div class="socmed_icon">
+                    <div class="socmed_item">
+                        <a href="https://www.facebook.com/GhibliUSA">
+                            <img src="https://cdn-icons-png.flaticon.com/512/20/20673.png">
+                        </a>
+                    </div>
+                    <div class="socmed_item">
+                        <a href="https://www.instagram.com/ghibliarchives/">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1936/1936319.png">
+                        </a>
+                    </div>
+                    <div class="socmed_item">
+                        <a href="https://twitter.com/JP_GHIBLI">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384017.png">
+                        </a>
+                    </div>
+                    <div class="socmed_item">
+                        <a href="https://www.disney.co.jp/studio/ghibli.html">
+                            <img src="https://logoeps.com/wp-content/uploads/2012/12/disney-logo-vector.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <p>Copyright © 1985-2022 Studio Ghibli. All rights reserved.</p>
+        </div>
+        </div>
+        </div>
+    </section>
+    <!-- End of Footer Section -->
+
+    <script>
+        const hamburger = document.querySelector('.header .nav_bar .nav_list .hamburger');
+        const mobile_menu = document.querySelector('.header .nav_bar .nav_list ul');
+        const menu_item = document.querySelectorAll('.header .nav_bar .nav_list ul li a');
+        const header = document.querySelector('.header.container');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobile_menu.classList.toggle('active');
+        });
+
+        document.addEventListener('scroll', () => {
+            var scroll_position = window.scrollY;
+            if (scroll_position > 250) {
+                header.style.backgroundColor = '#29323c';
+            } else {
+                header.style.backgroundColor = 'transparent';
+            }
+        });
+
+        menu_item.forEach((item) => {
+            item.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                mobile_menu.classList.toggle('active');
+            });
+        });
+    </script>
+
+</body>
+
+</html>
